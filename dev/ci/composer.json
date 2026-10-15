@@ -1,0 +1,53 @@
+{
+    "name": "xumulus/advancebundles-graph-ql-wishlist-ci",
+    "description": "CI-only toolchain for Xumulus_AdvanceBundlesGraphQlWishlist: its Magento dependencies from the Mage-OS mirror, the Xumulus packages it builds on from dev/ci/deps/ (checked out by CI), and PHPUnit. Never shipped. \"require\" must match the module's composer.json; dev/ci/install.sh checks.",
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "repositories": {
+        "mage-os": {
+            "type": "composer",
+            "url": "https://mirror.mage-os.org/",
+            "only": [
+                "magento/*"
+            ]
+        },
+        "main": {
+            "type": "path",
+            "url": "deps/main",
+            "options": {
+                "symlink": true
+            }
+        },
+        "graph-ql": {
+            "type": "path",
+            "url": "deps/graph-ql",
+            "options": {
+                "symlink": true
+            }
+        }
+    },
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "^103.0.7",
+        "magento/module-wishlist": "^101.2.7",
+        "magento/module-wishlist-graph-ql": "^100.4.7",
+        "xumulus/advancebundles-graph-ql": "^2.0.0",
+        "xumulus/xumulus-advancebundles": "^2.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5 || ^11.5 || ^12.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "audit": {
+            "block-insecure": false
+        },
+        "allow-plugins": {
+            "laminas/laminas-dependency-plugin": false,
+            "magento/*": false,
+            "php-http/discovery": false
+        }
+    }
+}
