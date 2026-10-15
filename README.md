@@ -1,6 +1,6 @@
 # Xumulus Advanced Bundles GraphQL: Wishlist
 
-Wishlist support for [Xumulus Advanced Bundles GraphQL](../README.md) (`xumulus/advancebundles-graph-ql`): the
+Wishlist support for [Xumulus Advanced Bundles GraphQL](https://github.com/xumulus/xumulus-advancebundles-graph-ql) (`xumulus/advancebundles-graph-ql`): the
 text a shopper enters for a bundle item, such as an engraving, is kept on a wishlist bundle and moved with it to the
 cart.
 
@@ -73,11 +73,17 @@ required text that was never saved on the wishlist item fails the move with a us
 
 ## Development
 
-The unit tests run with the GraphQL package's suite (`phpunit.xml.dist` in the repository root). The repository's
-`Test/Api/run-graphql-tests.sh` covers these mutations when `XAB_CUSTOMER` is set.
+Unit tests, from a Magento install's vendor/ with the main module and the GraphQL package installed (or named by
+`XAB_MAIN_MODULE` and `XAB_GRAPHQL_MODULE`, see `dev/phpunit-bootstrap.php`):
 
-This directory is its own package. Build its release zip from it (`git archive --format=zip HEAD:wishlist`), or
-split it into a repository of its own with `git subtree split --prefix=wishlist`.
+```bash
+XAB_AUTOLOAD=/var/www/html/vendor/autoload.php /var/www/html/vendor/bin/phpunit -c phpunit.xml.dist
+```
+
+The GraphQL package's `Test/Api/run-graphql-tests.sh` covers these mutations when `XAB_CUSTOMER` is set.
+
+Build the release zip from a tag with `git archive --format=zip <tag>`; `.gitattributes` leaves out the
+repository-only files.
 
 ## License
 
