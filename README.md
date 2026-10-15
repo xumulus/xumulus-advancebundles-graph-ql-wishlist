@@ -73,6 +73,16 @@ required text that was never saved on the wishlist item fails the move with a us
 
 ## Development
 
+CI (`.github/workflows/ci.yml`) runs phpcs and PHPUnit on PHP 8.1 (Magento 2.4.7) and 8.4 (Magento 2.4.9) on
+every push. It checks out the private Xumulus packages it builds on into `dev/ci/deps/` with read-only deploy keys,
+then runs `dev/ci/run-phpcs.sh` and `dev/ci/run-unit.sh`. With those checkouts in place the scripts run the same
+way locally, for example in the CI image:
+
+```bash
+docker run --rm -u 0 -e COMPOSER_ALLOW_SUPERUSER=1 -v "$PWD":/app -w /app --entrypoint dev/ci/run-unit.sh \
+    markoshust/magento-php:8.4-fpm-2
+```
+
 Unit tests, from a Magento install's vendor/ with the main module and the GraphQL package installed (or named by
 `XAB_MAIN_MODULE` and `XAB_GRAPHQL_MODULE`, see `dev/phpunit-bootstrap.php`):
 
