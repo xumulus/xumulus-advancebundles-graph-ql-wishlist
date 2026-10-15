@@ -24,7 +24,10 @@
             "type": "path",
             "url": "deps/graph-ql",
             "options": {
-                "symlink": true
+                "symlink": true,
+                "versions": {
+                    "xumulus/advancebundles-graph-ql": "2.0.0"
+                }
             }
         }
     },
